@@ -2,4 +2,8 @@ bitcode_file_list: /usr/local/mull/mull/tmp/mull_bitcode_files
 project_name: Mull_Auto_Test
 max_distance: 1
 fork: true
+exclude_locations:
+- include/llvm
+- Rust
+- ForkProcessSandbox
 
