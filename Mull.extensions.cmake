@@ -9,10 +9,14 @@ function(mull_clone_target existing_target new_target)
   get_target_property(existing_target_source_dir ${existing_target} SOURCE_DIR)
   get_target_property(existing_target_sources ${existing_target} SOURCES)
   get_target_property(existing_target_include_directories ${existing_target} INCLUDE_DIRECTORIES)
+  get_target_property(existing_target_link_flags ${existing_target} LINK_FLAGS)
   get_target_property(existing_target_link_libraries ${existing_target} LINK_LIBRARIES)
   get_target_property(existing_target_install_rpath ${existing_target} INSTALL_RPATH)
   get_target_property(existing_target_compile_definitions ${existing_target} COMPILE_DEFINITIONS)
 
+  if(NOT existing_target_link_flags)
+    set(existing_target_link_flags "")
+  endif()
   if(NOT existing_target_link_libraries)
     set(existing_target_link_libraries "")
   endif()
@@ -51,6 +55,7 @@ function(mull_clone_target existing_target new_target)
     COMPILE_DEFINITIONS "${existing_target_compile_definitions}"
     INCLUDE_DIRECTORIES "${existing_target_include_directories}"
     INSTALL_RPATH "${existing_target_install_rpath}"
+    LINK_FLAGS "${existing_target_link_flags}"
   )
 
   target_link_libraries(${new_target} ${existing_target_link_libraries})
