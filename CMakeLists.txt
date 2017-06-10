@@ -24,6 +24,18 @@ add_dependencies(mull-autotest-driver
   google-test-bitcode
 )
 
+
+# We need to force_load LLVMAsmParser so that its API is available for execution
+# by JIT'ed Mull's unit tests.
+get_target_property(mull_autotest_driver_link_flags mull-autotest-driver LINK_FLAGS)
+if(NOT mull_autotest_driver_link_flags)
+  set(mull_autotest_driver_link_flags "")
+endif()
+set_target_properties(mull-autotest-driver
+  PROPERTIES
+  LINK_FLAGS
+  "${mull_autotest_driver_link_flags} -force_load ${LLVM_LIB_PATH}/libLLVMAsmParser.a")
+
 # This copies (symlinks) fixtures/*.bc files that are used by unit tests.
 add_custom_command(TARGET mull-autotest-driver
   POST_BUILD
