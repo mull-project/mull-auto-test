@@ -1,4 +1,8 @@
 #!/usr/bin/python
+##
+## mull-clang 0.0.1
+## Clang wrapper to generate LLVM bitcode files and create a list of them.
+## Mull reads this list through config.yml's "bitcode_file_list" parameter.
 
 import os
 import re
