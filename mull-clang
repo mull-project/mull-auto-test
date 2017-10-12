@@ -53,7 +53,17 @@ def run_compiler(args):
   args.append('-o')
   args.append(output_file_as_bitcode)
 
-  args[0] = '/usr/local/opt/llvm@3.9/bin/clang++'
+  args[0] = '/opt/llvm-3.9/bin/clang++'
+
+  args_string = ' '.join(args)
+
+  regex = r'-index-store-path [^ ]* '
+  args_string = re.sub(regex, "", args_string)
+
+  args = args_string.split()
+
+  print(args_string)
+  # exit(1)
 
   process = subprocess.Popen(args, stdout=subprocess.PIPE)
   output, error = process.communicate()
@@ -89,6 +99,7 @@ def run_linker(args):
   used = set()
   all_files = [x for x in all_files if x not in used and (used.add(x) or True)]
 
+  print("mull-clang> {0}", output_config_yml_file_path)
   output_config_yml_file = open(output_config_yml_file_path, 'w')
   for file in all_files:
     output_config_yml_file.write(file)

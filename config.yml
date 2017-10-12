@@ -1,9 +1,18 @@
-bitcode_file_list: /usr/local/mull/mull/tmp/mull_bitcode_files
+bitcode_file_list:  /opt/mull/tmp/mull_bitcode_files
 project_name: Mull_Auto_Test
 max_distance: 1
-fork: true
+fork: false
+diagnostics: true
 exclude_locations:
 - include/llvm
 - Rust
 - ForkProcessSandbox
+mutation_operators:
+- add_or_replacement_mutation_operator
+# - math_sub_mutation_operator
+# - math_mul_mutation_operator
+# - math_div_mutation_operator
 
+# /opt/mull/BuildXcode/projects/mull-auto-test/Debug/mull-autotest-driver /opt/mull/projects/mull-auto-test/config.yml
+# /opt/mull/BuildXcode/projects/mull-auto-test/Debug/mull-autotest-driver /Users/Stanislaw/RootStanislaw/Projects/mull-and-ESA/config.yml
+# /opt/mull/BuildXcode/tools/driver/Debug/mull-driver /Users/Stanislaw/RootStanislaw/Projects/mull-and-ESA/config.yml
